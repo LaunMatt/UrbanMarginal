@@ -11,6 +11,7 @@ Il n'y a qu'une seule application qui permet de démarrer soit un jeu serveur, s
    <li>Le client se connecte au serveur pour entrer dans le jeu : il doit d'abord choisir un personnage pour pouvoir entrer dans l'arène où il pourra se déplacer, tirer des boules de feu vers les autres joueurs, être touché par une boule de feu et discuter dans une zone de tchat.</li>
 </ul>
 
+<<<<<<< HEAD
 ![Capture1](https://github.com/user-attachments/assets/ed7a7913-58d3-4d52-aec9-15900ff0c164)
 
 <h2>Caractéristiques techniques</h2>
@@ -88,6 +89,85 @@ Une fois le personnage choisi et le pseudo saisi, il suffit de cliquer sur GO. L
 La fenêtre de l'arène représente la zone du jeu. Elle contient la zone de jeu avec 20 murs posés aléatoirement (les murs peuvent se superposer) et les joueurs déjà présents(qui ne peuvent pas se superposer entre eux ou avec un mur). Elle contient aussi une zone de saisie (uniquement côté client) et une zone de visualisation pour le tchat.<br>
 
 ![Arene](https://github.com/user-attachments/assets/bbaf8ad1-e0c9-437d-80f2-81578ce5e40d)
+=======
+![Capture1](https://github.com/user-attachments/assets/8df0e586-522a-407a-a42d-42e989792b32)
+
+<h2>Caractéristiques techniques</h2>
+
+<h3>Développement de l'application </h3>
+<strong>Langage : </strong>Java <br>
+<strong>IDE : </strong> Eclipse 2024-06 <br>
+<strong>Module graphique dans l'IDE : </strong> WindowBuilder <br>
+<strong>Rétroconception : </strong> ObjectAid
+
+<h3>Utilisation de l'application </h3>
+<strong>Type de support : </strong>ordinateur de bureau (le jeu n'est pas adapté pour les supports mobiles ni pour les tablettes). <br>
+<strong>Réseau : </strong>Internet ou réseau local. <br>
+<strong>Connexion : </strong>à partir d'une adresse IPV4. <br>
+<strong>Port d'écoute du serveur : </strong>6666 (valeur en dur dans l'application) <br>
+
+<h3>Fichiers des avatars (joueurs)</h3>
+Les fichiers contenant les images des avatars sont dans le dossier "media > personnages". <br>
+Pour donner une illusion de mouvement, il existe plusieurs images pour le déplacement de chaque avatar (4 étapes de déplacement), pour la blessure lors de la réception d'une boule de feu (2 étapes) et pour la mort (2 étapes). 3 avatars sont fournis avec leurs images dans les 8 positions. <br>
+Au niveau des fichiers correspondants, les noms sont constitués de la façon suivante : <br>
+persoPENdD.gif
+avec :
+<ul>
+   <li> P contenant le numéro du personnage</li>
+   <li> E contenant l'état ("marche", "touche", "mort")</li>
+   <li> N contenant le numéro d'étape (de 1 à 4 pour la marche, de 1 à 2 pour touché ou mort)</li>
+   <li> D contenant le numéro de direction (0 pour gauche, 1 pour droite)</li>
+</ul>
+Exemple : "perso1marche1d0.gif" correspond au personnage 1, à l'étape 1 de marche et dirigé vers la gauche (c'est le tout premier personnage en haut à gauche du tableau).
+
+<h3>Fichiers des sons</h3>
+Les fichiers contenant les sons du jeu sont dans le dossier "media > sons". <br>
+Certaines manipulations provoquent des sons :
+<ul>
+   <li>Choix du joueur > clic sur le bouton suivant : suivant.wav</li>
+   <li>Choix du joueur > clic sur le bouton précédent : precedent.wav</li>
+   <li>Choix du joueur > clic sur le bouton go : go.wav</li>
+   <li>Entrée dans la fenêtre du choix du joueur : welcome.wav</li>
+   <li>Tir d'une boule : fight.wav</li>
+   <li>Joueur blessé : hurt.wav</li>
+   <li>Joueur mort : death.wav</li>
+</ul>
+
+
+<h1>Présentation du jeu </h1>
+
+<h2>Fenêtre de démarrage du jeu </h2>
+
+![Connexion](https://github.com/user-attachments/assets/38e147d9-8432-4472-965b-a64f6e586b1f)
+
+<br>
+Cette première fenêtre permet de choisir d’être serveur ou client. <br>
+
+<h3>Lancer un serveur unique</h3>
+En cliquant sur "Démarrer", un jeu serveur est lancé et l'arène du jeu va directement s'afficher. Aucune action ne peut être faite sur le jeu serveur qui permet juste de visualiser le jeu. <br>
+Cependant, une fois le serveur lancé, il se met en attente de connexion de clients qui veulent jouer. À chaque fois qu'une connexion est requise, il doit enregistrer ses caractéristiques. <br>
+C'est aussi le serveur qui est responsable du transfert de toutes les informations : à chaque fois qu'un joueur (client) réalise une action que les autres joueurs doivent voir (déplacement, tir de boule…), l'information est transmise au serveur qui la renvoie vers tous les joueurs pour qu'elle s'affiche sur leur écran. <br>
+
+<h3>Se connecter à un serveur pour jouer</h3>
+En cliquant sur "Connecter", l'ordinateur contrôle d'abord qu'une adresse IP a bien été saisie. Il cherche ensuite à se connecter à cette adresse IP, sur le port défini dans le programme (la valeur du port est une constante). <br>
+Si la connexion échoue, un message est affiché. Si la connexion réussie, cette fenêtre se ferme et la fenêtre du choix du personnage apparait.
+
+<h2>Fenêtre de choix du personnage </h2>
+
+![ChoixJoueur](https://github.com/user-attachments/assets/48b897b1-df50-4220-8668-2a6ec13003c3)
+
+<br>
+La fenêtre du choix du personnage permet au joueur de saisir son pseudo et de choisir un personnage parmi plusieurs avatars proposés, en utilisant les flèches. <br>
+Des zones cliquables transparentes sont positionnées sur les flèches et sur "GO". <br>
+Une fois le personnage choisi et le pseudo saisi, il suffit de cliquer sur GO. L'ordinateur contrôle qu'un pseudo a bien été saisi. Si c'est le cas, cette fenêtre se ferme et la fenêtre de l'arène apparait.
+
+<h2>Fenêtre de l’arène </h2>
+
+<h3>Présentation </h3>
+La fenêtre de l'arène représente la zone du jeu. Elle contient la zone de jeu avec 20 murs posés aléatoirement (les murs peuvent se superposer) et les joueurs déjà présents(qui ne peuvent pas se superposer entre eux ou avec un mur). Elle contient aussi une zone de saisie (uniquement côté client) et une zone de visualisation pour le tchat.<br>
+
+![Arene](https://github.com/user-attachments/assets/70332d04-85cd-40fa-9e01-8118759c9c90)
+>>>>>>> branch 'master' of https://github.com/LaunMatt/UrbanMarginal.git
 
 <br>
 Côté serveur, elle permet juste de visualiser ce qui se passe et ne permet aucune action. <br>
