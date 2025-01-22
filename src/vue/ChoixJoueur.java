@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import controleur.Controle;
+
 import java.awt.Dimension;
 
 /**
@@ -18,6 +21,10 @@ import java.awt.Dimension;
  */
 public class ChoixJoueur extends JFrame {
 
+	/**
+	 * Instance du contrôleur pour communiquer avec lui
+	 */
+	private Controle controle;
 	/**
 	 * Panel général
 	 */
