@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import controleur.Controle;
+import controleur.Global;
 
 import java.awt.Cursor;
 import java.awt.Dimension;

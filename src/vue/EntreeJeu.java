@@ -2,6 +2,7 @@ package vue;
 
 import java.awt.EventQueue;
 import controleur.Controle;
+import controleur.Global;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

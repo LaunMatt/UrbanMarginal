@@ -1,4 +1,7 @@
 package modelepackage;
+
+import controleur.Global;
+
 /**
  * Gestion des joueurs
  *
@@ -55,9 +58,14 @@ public class Joueur extends Objet {
 
 	/**
 	 * Initialisation d'un joueur (pseudo et numéro, calcul de la 1ère position, affichage, création de la boule)
+	 * @param numPerso numéro du personnage
+	 * @param pseudo pseudo du joueur
 	 */
-	public void initPerso() {
-	}
+	public void initPerso(String pseudo, int numPerso) {
+		this.pseudo = pseudo;
+		this.numPerso = numPerso;
+		System.out.println("joueur "+pseudo+" - num perso "+numPerso+" créé");
+		}
 
 	/**
 	 * Calcul de la première position aléatoire du joueur (sans chevaucher un autre joueur ou un mur)
