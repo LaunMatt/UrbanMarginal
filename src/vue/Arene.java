@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
 import controleur.Global;
 
 /**
@@ -35,6 +36,10 @@ public class Arene extends JFrame implements Global {
 	 * Zone d'affichage du t'chat
 	 */
 	private JTextArea txtChat ;
+	/**
+	 * Panel contenant les joueurs et les boules
+	 */
+	private JPanel jpnJeu;
 	
 	/**
 	 * @return the jpnMurs
@@ -42,13 +47,29 @@ public class Arene extends JFrame implements Global {
 	public JPanel getJpnMurs() {
 		return jpnMurs;
 	}
-
+	
 	/**
 	 * @param jpnMurs the jpnMurs to set
 	 */
 	public void setJpnMurs(JPanel jpnMurs) {
 		this.jpnMurs.add(jpnMurs);
 		this.jpnMurs.repaint();
+	}
+	
+	/**
+	 * @return the jpnJeu
+	 */
+	public JPanel getJpnJeu() {
+		return jpnJeu;
+	}
+
+	/**
+	 * @param jpnJeu the jpnJeu to set
+	 */
+	public void setJpnJeu(JPanel jpnJeu) {
+		this.jpnJeu.removeAll();
+		this.jpnJeu.add(jpnJeu);
+		this.jpnJeu.repaint();
 	}
 
 	/**
@@ -59,13 +80,22 @@ public class Arene extends JFrame implements Global {
 		jpnMurs.add((JLabel)unMur);
 		jpnMurs.repaint();
 	}
+	
+	/**
+	 * Ajout d'un joueur, son message ou sa boule, dans le panel de jeu
+	 * @param unJLabel le label à ajouter
+	 */
+	public void ajoutJLabelJeu(JLabel unJLabel) {
+		this.jpnJeu.add(unJLabel);
+		this.jpnJeu.repaint();
+	}
 
 	/**
 	 * Create the frame.
 	 */
 	public Arene() {
 		// Dimension de la frame en fonction de son contenu
-		this.getContentPane().setPreferredSize(new Dimension(controleur.Global.LARGEURARENE, controleur.Global.HAUTEURARENE + 25 + 140));
+		this.getContentPane().setPreferredSize(new Dimension(LARGEURARENE, HAUTEURARENE + 25 + 140));
 	    this.pack();
 	    // interdiction de changer la taille
 		this.setResizable(false);
@@ -76,8 +106,14 @@ public class Arene extends JFrame implements Global {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 	
+		jpnJeu = new JPanel();
+		jpnJeu.setBounds(0, 0, LARGEURARENE, HAUTEURARENE);
+		jpnJeu.setOpaque(false);
+		jpnJeu.setLayout(null);		
+		contentPane.add(jpnJeu);
+		
 		jpnMurs = new JPanel();
-		jpnMurs.setBounds(0, 0, controleur.Global.LARGEURARENE, controleur.Global.HAUTEURARENE);
+		jpnMurs.setBounds(0, 0, LARGEURARENE, HAUTEURARENE);
 		jpnMurs.setOpaque(false);
 		jpnMurs.setLayout(null);		
 		contentPane.add(jpnMurs);
@@ -96,7 +132,7 @@ public class Arene extends JFrame implements Global {
 		jspChat.setViewportView(txtChat);
 		
 		JLabel lblFond = new JLabel("");
-		URL resource = getClass().getClassLoader().getResource(controleur.Global.FONDARENE);
+		URL resource = getClass().getClassLoader().getResource(FONDARENE);
 		lblFond.setIcon(new ImageIcon(resource));		
 		lblFond.setBounds(0, 0, 800, 600);
 		contentPane.add(lblFond);

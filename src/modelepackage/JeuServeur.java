@@ -3,6 +3,8 @@ package modelepackage;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+import javax.swing.JLabel;
+
 import controleur.Controle;
 import controleur.Global;
 import modelepackage.Joueur;
@@ -33,7 +35,7 @@ public class JeuServeur extends Jeu implements Global {
 	
 	@Override
 	public void connexion(Connection connection) {
-		this.lesJoueurs.put(connection, new Joueur());
+		this.lesJoueurs.put(connection, new Joueur(this));
 	}
 
 	@Override
@@ -46,7 +48,7 @@ public class JeuServeur extends Jeu implements Global {
 			controle.evenementJeuServeur(AJOUTPANELMURS, connection);
 			String pseudo = infos[1];
 			int numPerso = Integer.parseInt(infos[2]);
-			this.lesJoueurs.get(connection).initPerso(pseudo, numPerso);
+			this.lesJoueurs.get(connection).initPerso(pseudo, numPerso, this.lesJoueurs.values(), this.lesMurs);
 			break;
 		}
 	}
@@ -54,12 +56,25 @@ public class JeuServeur extends Jeu implements Global {
 	@Override
 	public void deconnexion() {
 	}
+	
+	public void ajoutJLabelJeuArene(JLabel jLabel) {
+		this.controle.evenementJeuServeur(AJOUTJLABELJEU, jLabel);
+	}
 
 	/**
 	 * Envoi d'une information vers tous les clients
 	 * fais appel plusieurs fois à l'envoi de la classe Jeu
 	 */
 	public void envoi() {
+	}
+	
+	/**
+	 * Envoi du panel de jeu à tous les joueurs
+	 */
+	public void envoiJeuATous() {
+		for(Connection connection : this.lesJoueurs.keySet()) {
+			this.controle.evenementJeuServeur(MODIFPANELJEU, connection);
+		}
 	}
 
 	/**
