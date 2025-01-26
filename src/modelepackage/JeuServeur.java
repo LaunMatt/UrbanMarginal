@@ -1,4 +1,5 @@
 package modelepackage;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -11,7 +12,7 @@ import outilspackage.Connection;
  * Gestion du jeu côté serveur
  *
  */
-public class JeuServeur extends Jeu {
+public class JeuServeur extends Jeu implements Global {
 
 	/**
 	 * Collection de murs
@@ -23,7 +24,7 @@ public class JeuServeur extends Jeu {
 	private Hashtable<Connection, Joueur> lesJoueurs = new Hashtable<Connection, Joueur>() ;
 	
 	/**
-	 * Controleur
+	 * Constructeur
 	 * @param controle instance du contrôleur pour les échanges
 	 */
 	public JeuServeur(Controle controle) {
@@ -37,10 +38,12 @@ public class JeuServeur extends Jeu {
 
 	@Override
 	public void reception(Connection connection, Object info) {
-		String[] infos = ((String)info).split(controleur.Global.STRINGSEPARE);
+		String[] infos = ((String)info).split(STRINGSEPARE);
 		String ordre = infos[0];
 		switch(ordre) {
-		case controleur.Global.PSEUDO :
+		case PSEUDO :
+			// arrivée des informations d'un nouveau joueur
+			controle.evenementJeuServeur(AJOUTPANELMURS, connection);
 			String pseudo = infos[1];
 			int numPerso = Integer.parseInt(infos[2]);
 			this.lesJoueurs.get(connection).initPerso(pseudo, numPerso);
@@ -63,6 +66,10 @@ public class JeuServeur extends Jeu {
 	 * Génération des murs
 	 */
 	public void constructionMurs() {
+		for(int k=0 ; k < controleur.Global.NBMURS ; k++) {
+			this.lesMurs.add(new Mur());
+			this.controle.evenementJeuServeur(controleur.Global.AJOUTMUR, lesMurs.get(lesMurs.size()-1).getjLabel());
+		}
 	}
 	
 }

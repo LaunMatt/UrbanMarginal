@@ -13,6 +13,7 @@ public abstract class Jeu {
 	 * Instance de Controle, pour communiquer avec le contrôleur
 	 */
 	protected Controle controle;
+	
 	/**
 	 * Réception d'une connexion (pour communiquer avec un ordinateur distant)
 	 */
