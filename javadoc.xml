@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="private" author="true" classpath="." destdir="doc" doctitle="documentation" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="outilspackage,vue,controleur,modelepackage" source="21" sourcefiles="src/Jeu.java,src/Boule.java,src/JeuServeur.java,src/JeuClient.java,src/Mur.java,src/Joueur.java,src/Objet.java" sourcepath="src;media" splitindex="true" use="true" version="true"/>
+    </target>
+</project>

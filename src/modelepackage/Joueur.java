@@ -73,6 +73,13 @@ public class Joueur extends Objet implements Global {
 		this.etape = 1;
 		this.orientation = DROITE;
 	}
+	
+	/**
+	 * @return the pseudo
+	 */
+	public String getPseudo() {
+		return pseudo;
+	}
 
 	/**
 	 * Initialisation d'un joueur (pseudo et numéro, calcul de la 1ère position, affichage, création de la boule)

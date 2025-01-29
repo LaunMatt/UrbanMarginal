@@ -12,9 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * Frame de l'entrée dans le jeu (choix entre serveur et client)
+ * @author emds
+ *
+ */
 public class EntreeJeu extends JFrame {
 
-	private static final long serialVersionUID = 1L;
 	/**
 	 * Panel général
 	 */
@@ -23,11 +27,12 @@ public class EntreeJeu extends JFrame {
 	 * Zone de saisie de l'IP
 	 */
 	private JTextField txtIp;
+	
 	/**
 	 * Instance du contrôleur pour communiquer avec lui
 	 */
 	private Controle controle;
-	
+
 	/**
 	 * clic sur le bouton Start pour lancer le serveur
 	 */
@@ -47,10 +52,11 @@ public class EntreeJeu extends JFrame {
 	 */
 	private void btnConnect_clic() {
 		this.controle.evenementEntreeJeu(this.txtIp.getText());
-	}	
-	
+	}
+
 	/**
 	 * Create the frame.
+	 * @param controle instance du contrôleur
 	 */
 	public EntreeJeu(Controle controle) {
 		setResizable(false);
