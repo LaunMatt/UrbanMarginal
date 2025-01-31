@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 
 import controleur.Controle;
 import controleur.Global;
-import modelepackage.Joueur;
 import outilspackage.Connection;
 
 /**
@@ -56,6 +55,10 @@ public class JeuServeur extends Jeu implements Global {
 			String phrase = infos[1];
 			phrase = this.lesJoueurs.get(connection).getPseudo()+" > "+phrase;
 			this.controle.evenementJeuServeur(AJOUTPHRASE, phrase);
+			break;
+		case ACTION :
+			Integer action = Integer.parseInt(infos[1]);
+			this.lesJoueurs.get(connection).action(action, this.lesJoueurs.values(), this.lesMurs);
 			break;
 		}
 	}

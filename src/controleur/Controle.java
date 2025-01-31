@@ -13,7 +13,6 @@ import outilspackage.ServeurSocket;
 import vue.Arene;
 import vue.ChoixJoueur;
 import vue.EntreeJeu;
-import controleur.Global;
 
 /**
  * Contrôleur et point d'entrée de l'applicaton 
@@ -130,10 +129,14 @@ public class Controle implements AsyncResponse, Global {
 	
 	/**
 	 * Information provenant de la vue Arene
-	 * @param info information
+	 * @param info information à transférer
 	 */
-	public void evenementArene(String info) {
-		((JeuClient)this.leJeu).envoi(TCHAT+STRINGSEPARE+info);
+	public void evenementArene(Object info) {
+		if(info instanceof String) {
+			((JeuClient)this.leJeu).envoi(TCHAT+STRINGSEPARE+info);
+		}else if (info instanceof Integer) {
+			((JeuClient)this.leJeu).envoi(ACTION+STRINGSEPARE+info);
+		}
 	}
 
 	/**
