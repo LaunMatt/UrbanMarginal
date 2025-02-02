@@ -157,7 +157,7 @@ public class Controle implements AsyncResponse, Global {
 	@Override
 	public void reception(Connection connection, String ordre, Object info) {
 		switch(ordre) {
-		case controleur.Global.CONNEXION :
+		case CONNEXION :
 			if(!(this.leJeu instanceof JeuServeur)) {
 				this.leJeu = new JeuClient(this);
 				this.leJeu.connexion(connection);
@@ -169,10 +169,11 @@ public class Controle implements AsyncResponse, Global {
 				this.leJeu.connexion(connection);
 			}
 			break;
-		case controleur.Global.RECEPTION :
+		case RECEPTION :
 			this.leJeu.reception(connection, info);
 			break;
-		case controleur.Global.DECONNEXION :
+		case DECONNEXION :
+			this.leJeu.deconnexion(connection);
 			break;
 		}
 		
